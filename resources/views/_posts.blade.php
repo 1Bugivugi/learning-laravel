@@ -5,22 +5,22 @@
 @endsection
 
 @section('content')
-    @foreach($posts as $post)
-        <article>
-            <h3>
-                <a href="/posts/{{$post->slug}}">
-                    {{$post->title}}
-                </a>
-            </h3>
+    @include('_posts-header')
 
-            <p>
-                By <a href="/authors/{{$post->author->username}}">{{$post->author->name}}</a> in <a
-                    href="/categories/{{$post->category->slug}}">{{$post->category->name}}</a>
-            </p>
+    <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
+        @if ($posts->count())
+            <x-post-featured-card :post="$posts->first()"/>
 
-            <div>
-                <p>{{$post->excerpt}}</p>
-            </div>
-        </article>
-    @endforeach
+            @if($posts->count() > 1)
+                <div class="lg:grid lg:grid-cols-2">
+                    @foreach($posts->skip(1) as $post)
+                        <x-post-card :post="$post" class="bg-red-500"/>
+                    @endforeach
+                </div>
+            @endif
+
+        @else
+            <p style="text-align: center">No posts yet. Please check back later.</p>
+        @endif
+    </main>
 @endsection

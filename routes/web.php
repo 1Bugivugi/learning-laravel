@@ -23,11 +23,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
-    Route::get('authors/{author:username}', function (User $author) {
-        return view('posts.index', [
-            'posts' => $author->posts->load(['category', 'author']),
-        ]);
-    });
+//    Route::get('authors/{author:username}', function (User $author) {
+//        return view('posts.index', [
+//            'posts' => $author->posts->load(['category', 'author']),
+//        ]);
+//    });
 
 //    Route::get('categories/{category:slug}', function (Category $category) {
 //        return view('posts.index', [

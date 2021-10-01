@@ -8,7 +8,7 @@
     <x-dropdown-item-laracast href="/" :active="request()->routeIs('posts')">All</x-dropdown-item-laracast>
     @foreach($categories as $category)
         <x-dropdown-item-laracast
-            href="/?category={{$category->slug}}"
+            href="/?category={{$category->slug}}&{{http_build_query(request()->except('category', 'page'))}}"
             {{--                        :active="isset($currentCategory) && $currentCategory->is($category)"--}}
             :active="request()->is('categories/' . $category->slug)"
         >

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostCommentsController;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
@@ -22,6 +23,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [PostController::class, 'index'])->name('posts');
 
     Route::get('posts/{post:slug}', [PostController::class, 'show']);
+
+    Route::post('/posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
 
 //    Route::get('authors/{author:username}', function (User $author) {
 //        return view('posts.index', [

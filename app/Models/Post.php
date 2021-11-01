@@ -48,4 +48,10 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id');
         // hasOne, hasMany, belongsTo, belongsToMany
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+        // hasOne, hasMany, belongsTo, belongsToMany
+    }
 }
